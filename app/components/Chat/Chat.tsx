@@ -135,7 +135,7 @@ export default function Chat({chatData,friend,permissions}:Props) {
             </div>
         </div>
   ):(
-    <div className='relative z-10 flex flex-col sm:w-3/4 sm:h-full text-white text-sm pt-12 bg-[#36393e] p-2'>
+    <div className='relative z-10 flex flex-col sm:w-[1300px] w-full text-white text-sm pt-12 bg-[#36393e] p-2'>
             <div className='absolute flex items-center px-5 border-b bg-[#36393e] border-[#1e2124] top-0 left-0 w-full h-12'>
                <div className='flex w-screen justify-between items-center'>
                     <div className='flex items-center justify-start gap-3 '>

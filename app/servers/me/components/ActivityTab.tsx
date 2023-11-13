@@ -201,7 +201,7 @@ export default function ActivityTab({invites,users,permissions,serverId,serverDa
             </div>
         </div>
     ) : (
-        <div className='h-full w-[300px] bg-[#282b30] flex flex-col p-6 text-slate-300 text-sm gap-5 overflow-y-auto'>
+        <div className='h-full bg-[#282b30] w-full flex flex-col p-6 text-slate-300 text-sm gap-5 overflow-y-auto'>
             <div className='flex w-full flex-col h-screen gap-4'>
                 <div className='flex items-center justify-between gap-4'>
                     <p>Active - {activeUsers?.length}</p>

@@ -49,14 +49,15 @@ export default function BottomBar() {
     }
 
     function fullyMuteUnmuteClient(){
-        if(voiceState?.fullyMuted){
-            playSound(unmuteSound,0.3) 
-        }else{
-            playSound(muteSound,0.3) 
+ 
+        if (voiceState?.fullyMuted) {
+            playSound(unmuteSound, 0.3);
+        } else {
+            playSound(muteSound, 0.3);
         }
-
-
-        audioRtcToggler(!voiceState?.micMuted!,!voiceState?.fullyMuted!)
+    
+        audioRtcToggler(voiceState?.micMuted!, !voiceState?.fullyMuted!);
+    
 
         socket.emit('fullyMuteUnmuteClient',session._id)
         socket.emit('requestUserVoiceState',(session._id))
@@ -76,7 +77,7 @@ export default function BottomBar() {
             playSound(muteSound,0.3) 
         }
 
-       micRtcToggler(!voiceState?.micMuted);
+        micRtcToggler(!voiceState?.micMuted,voiceState?.fullyMuted);
         socket.emit('muteUnmuteClient',session._id)
         socket.emit('requestUserVoiceState',(session._id))
         if(params.serverId){
@@ -89,6 +90,7 @@ export default function BottomBar() {
 
 
     useEffect(() => {
+        
         socket.emit('requestUserVoiceState', session._id);
         socket.on('requestedUserVoiceState', (voiceState) => {
             setVoiceState(voiceState);
@@ -97,7 +99,7 @@ export default function BottomBar() {
             socket.disconnect()
         }
     }, []);
-
+    console.log(voiceState)
     return isMobile  ?  (
         <div className={`${!isOpenedChat && !isOpenedActivity && !isOpenedFriendsTab ? 'fixed' : "hidden"} bottom-0 left-12  flex justify-between px-5 pr-[80px] items-center w-screen sm:w-[252px] text-white h-[60px] bg-[#1e2124] p-3 cursor-pointer opacity-100`}>
             <div 

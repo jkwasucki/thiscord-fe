@@ -133,8 +133,8 @@ export default function FriendsTab({friends}:Props) {
         </div>
     </div>
   ):(
-    <div className=' flex flex-col sm:w-3/4 w-full  text-white text-sm bg-[#36393e] pt-5'>
-        <div className='flex w-[80%] flex-col sm:mx-auto sm:w-full sm:h-screen gap-4 sm:px-12'>
+    <div className=' flex flex-col  w-full  text-white text-sm bg-[#36393e] pt-5'>
+        <div className='flex sm:w-[1300px] flex-col sm:mx-auto sm:w-full sm:h-screen gap-4 sm:px-12'>
             <div ref={outsideClickRef} className='relative flex items-center  sm:w-full sm:h-12 h-[50px] bg-[#1e2124] rounded-lg gap-3 pr-2'>
                 <input 
                     value={friendSearchInput}

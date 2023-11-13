@@ -90,41 +90,32 @@ export const initVolumeIndicator = async(setVolumeLevel: React.Dispatch<React.Se
 }
 
 export let micRtcToggler = async (micMuted: boolean,fullyMuted?:boolean) => {
-    if(!micMuted && !fullyMuted){
-        audioTracks.localAudioTracks?.setMuted(false)
-        rtcClient.remoteUsers.forEach((user)=>{
-            user.audioTrack?.setVolume(100)
-            user.audioTrack?.getUserId()
-         })
-    }else if(micMuted && !fullyMuted){
+  
+    if(micMuted){
         audioTracks.localAudioTracks?.setMuted(true)
-        rtcClient.remoteUsers.forEach((user)=>{
-            user.audioTrack?.setVolume(100)
-            user.audioTrack?.getUserId()
-         })
-    }else if(!micMuted && fullyMuted){
+    }
+    if(!micMuted && fullyMuted){
         audioTracks.localAudioTracks?.setMuted(false)
-        rtcClient.remoteUsers.forEach((user)=>{
-            user.audioTrack?.setVolume(100)
-            user.audioTrack?.getUserId()
-         })
+        rtcClient.remoteUsers.forEach((user) => {
+            user.audioTrack?.setVolume(0);
+        });
     }
 }
 
-export let audioRtcToggler = async(micMuted:boolean,fullyMuted:boolean) => {
-    if(fullyMuted){
+export let audioRtcToggler = async (micMuted: boolean, fullyMuted: boolean) => {
+    console.log("MIC MUTED:",micMuted,"FULLY MUTED:",fullyMuted)
+    if (fullyMuted) {
         audioTracks.localAudioTracks?.setMuted(true)
-        rtcClient.remoteUsers.forEach((user)=>{
-            user.audioTrack?.setVolume(0)
-            user.audioTrack?.getUserId()
-         })
-    }else{
-        rtcClient.remoteUsers.forEach((user)=>{
-            user.audioTrack?.setVolume(100)
-            user.audioTrack?.getUserId()
-         })
+        rtcClient.remoteUsers.forEach((user) => {
+            user.audioTrack?.setVolume(0);
+        });
+    } else if(!fullyMuted) {
+        audioTracks.localAudioTracks?.setMuted(true)
+        rtcClient.remoteUsers.forEach((user) => {
+            user.audioTrack?.setVolume(100);
+        });
     }
-}
+};
 
 export async function leaveRoomRtc() {
      

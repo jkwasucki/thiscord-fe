@@ -84,9 +84,25 @@ export default function ServerTabs({serverData,serverId,role}:Props) {
         })
     }
 
+
     // Upon render, request voice rooms for current server
     useEffect(()=>{
         
+            socket.on('disconnectedUser',(userId:string)=>{
+                setVoiceRooms((prevVoiceRooms) => {
+                    const updatedVoiceRooms = { ...prevVoiceRooms };
+        
+                    // Iterate over each voice room and remove the disconnected user
+                    Object.keys(updatedVoiceRooms).forEach((room) => {
+                        updatedVoiceRooms[room].users = updatedVoiceRooms[room].users.filter(
+                            (user) => user._id !== userId
+                        );
+                    });
+        
+                    return updatedVoiceRooms;
+                });
+            })  
+
             socket.on('requestedVoiceRooms',(rooms)=>{
                 setVoiceRooms(rooms)
             })
@@ -126,7 +142,7 @@ export default function ServerTabs({serverData,serverId,role}:Props) {
             }
         }
     },[initialDataReceived,voiceRooms,voiceState])
-
+    
    return isMobile ? (
     <div className={`${isOpened ? 'flex flex-col w-[85vw] h-screen gap-12' : 'hidden'} relative flex overflow-hidden flex-col h-full bg-[#282b30] text-[#80848e] gap-5 `}>
         <div className='border-b border-[#1e2124] h-12 w-full flex items-center justify-center'>

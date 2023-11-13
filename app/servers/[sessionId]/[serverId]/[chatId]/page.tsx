@@ -23,7 +23,7 @@ export default async function Main({params:{serverId,chatId,sessionId}}:Params) 
     const chatData =  await axios.get(`${API_BASE_URL}/api/chats/chat/getChat/${chatId}`)
   
   return (
-        <div className=' flex w-screen'>
+        <div className='flex w-screen'>
             <div className='flex flex-col'>
                 <ServerTabs
                     role={roleData.data}

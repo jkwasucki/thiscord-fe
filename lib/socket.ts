@@ -8,3 +8,4 @@ const socket = io('https://thiscord-backend-vycpo.ondigitalocean.app', {
 
 
 export default socket
+

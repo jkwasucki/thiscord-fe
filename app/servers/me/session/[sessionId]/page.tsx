@@ -22,7 +22,7 @@ export default async function Main({params:{sessionId}}:Params) {
 
 
   return (
-    <main className='flex sm:w-screen'>
+    <main className='flex sm:w-full'>
         <div className='flex flex-col'>
             <Convos 
                 chats={chatsResponse.data}
